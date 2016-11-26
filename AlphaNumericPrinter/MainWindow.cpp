@@ -16,12 +16,6 @@ MainWindow::MainWindow (MainFrame *parent) : wxWindow (parent, wxID_ANY) {
     wxImage::AddHandler (imageLoader);
 }
 
-bool MainWindow::isAlphaNumeric (int numb) {
-    if (numb>='0' && numb<='9') return true;
-    if (numb>='a' && numb<='z') return true;
-    return false;
-}
-
 void MainWindow::loadImage (wxKeyEvent &event) {
     if (!isAlphaNumeric (event.GetKeyCode ())) return;
     wxString keyCode = (char) event.GetKeyCode();
@@ -34,6 +28,12 @@ void MainWindow::loadImage (wxKeyEvent &event) {
     image.Rescale (mImageSize, mImageSize);
     mBitmap = new wxBitmap (image);
     Refresh ();
+}
+
+bool MainWindow::isAlphaNumeric (int numb) {
+    if (numb>='0' && numb<='9') return true;
+    if (numb>='a' && numb<='z') return true;
+    return false;
 }
 
 void MainWindow::onPaint (wxPaintEvent &event) {

@@ -1,6 +1,6 @@
-#include "MainWindow.h"
-#include "wx/stdpaths.h"
 #include "wx/filename.h"
+#include "wx/stdpaths.h"
+#include "MainWindow.h"
 
 BEGIN_EVENT_TABLE (MainWindow, wxWindow)
     EVT_LEFT_DOWN (MainWindow::loadImage)
