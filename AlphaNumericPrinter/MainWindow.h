@@ -4,14 +4,13 @@
 
 class MainWindow : public wxWindow {
 private:
-    wxBitmap *bitmap;
-    int imageSize;
+    wxBitmap *mBitmap;
+    int mImageSize;
     bool isAlphaNumeric (int numb);
-    void loadImage (wxString keyCode);
     DECLARE_EVENT_TABLE ()
 
 public:
     MainWindow (MainFrame *parent);
-    void onChar (wxKeyEvent &event);
-    void onPaint (wxPaintEvent& event);
+    void loadImage (wxKeyEvent &event);
+    void onPaint (wxPaintEvent &event);
 };

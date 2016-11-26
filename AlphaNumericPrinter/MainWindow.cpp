@@ -1,24 +1,19 @@
-#include "wx/stdpaths.h"
 #include "wx/filename.h"
+#include "wx/stdpaths.h"
 #include "MainWindow.h"
 #include "MainFrame.h"
 
 BEGIN_EVENT_TABLE (MainWindow, wxWindow)
-    EVT_CHAR (MainWindow::onChar)
+    EVT_CHAR (MainWindow::loadImage)
     EVT_PAINT (MainWindow::onPaint)
 END_EVENT_TABLE ()
 
-MainWindow::MainWindow (MainFrame* parent) : wxWindow (parent, wxID_ANY) {
+MainWindow::MainWindow (MainFrame *parent) : wxWindow (parent, wxID_ANY) {
     SetBackgroundColour (wxColour (*wxWHITE));
-    imageSize = 100;
-    bitmap = nullptr;
+    mImageSize = 100;
+    mBitmap = nullptr;
     wxImageHandler *imageLoader = new wxPNGHandler ();
     wxImage::AddHandler (imageLoader);
-}
-
-void MainWindow::onChar (wxKeyEvent& event) {
-    if (!isAlphaNumeric (event.GetKeyCode ())) return;
-    loadImage (wxString ((char) event.GetKeyCode ()));
 }
 
 bool MainWindow::isAlphaNumeric (int numb) {
@@ -27,24 +22,27 @@ bool MainWindow::isAlphaNumeric (int numb) {
     return false;
 }
 
-void MainWindow::onPaint (wxPaintEvent &event) {
-    wxPaintDC pdc (this);
+void MainWindow::loadImage (wxKeyEvent &event) {
+    if (!isAlphaNumeric (event.GetKeyCode ())) return;
+    wxString keyCode = (char) event.GetKeyCode();
     
-    if (bitmap != nullptr) {
-        int xx, yy;
-        xx = rand () % (GetSize ().GetWidth () - imageSize);
-        yy = rand () % (GetSize ().GetHeight () - imageSize);
-        pdc.DrawBitmap (*bitmap, wxPoint (xx, yy), true);
-    }
-}
-
-void MainWindow::loadImage (wxString keyCode) {
     wxStandardPaths &stdPaths = wxStandardPaths::Get ();
     wxString src = stdPaths.GetExecutablePath ();
     src = wxFileName (src).GetPath () + wxT ("\\") + keyCode + wxT (".png");
     
     wxImage image (src, wxBITMAP_TYPE_PNG);
-    image.Rescale (imageSize, imageSize);
-    bitmap = new wxBitmap (image);
+    image.Rescale (mImageSize, mImageSize);
+    mBitmap = new wxBitmap (image);
     Refresh ();
+}
+
+void MainWindow::onPaint (wxPaintEvent &event) {
+    wxPaintDC pdc (this);
+    
+    if (mBitmap != nullptr) {
+        int xx, yy;
+        xx = rand () % (GetSize ().GetWidth () - mImageSize);
+        yy = rand () % (GetSize ().GetHeight () - mImageSize);
+        pdc.DrawBitmap (*mBitmap, wxPoint (xx, yy), true);
+    }
 }
