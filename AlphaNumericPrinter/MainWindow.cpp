@@ -4,8 +4,6 @@
 #include "MainFrame.h"
 
 BEGIN_EVENT_TABLE (MainWindow, wxWindow)
-    EVT_KEY_DOWN (MainWindow::onKeyDown)
-    EVT_KEY_UP (MainWindow::onKeyUp)
     EVT_CHAR (MainWindow::onChar)
     EVT_PAINT (MainWindow::onPaint)
 END_EVENT_TABLE ()
@@ -16,13 +14,6 @@ MainWindow::MainWindow (MainFrame* parent) : wxWindow (parent, wxID_ANY) {
     bitmap = nullptr;
     wxImageHandler *imageLoader = new wxPNGHandler ();
     wxImage::AddHandler (imageLoader);
-}
-
-void MainWindow::onKeyDown (wxKeyEvent& event) {
-    event.Skip ();
-}
-
-void MainWindow::onKeyUp (wxKeyEvent& event) {
 }
 
 void MainWindow::onChar (wxKeyEvent& event) {
