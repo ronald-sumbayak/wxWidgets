@@ -1,17 +1,11 @@
 #pragma once
 #include "wx\dcclient.h"
 #include "FlyingObject.h"
-class FlyingObject;
+#include "Rect.h"
 
-class Box : public FlyingObject {
+class Box : public Rect {
 
 public:
 	Box(int xx, int yy, wxColor fillColor, wxColor outlineColor);
-	void draw(wxPaintDC &pdc);
-	int left();
-	int right();
-	int bottom();
-	int top();
-	int type();
 };
 
