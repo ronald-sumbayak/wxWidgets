@@ -1,9 +1,6 @@
 #include "MainWindow.h"
-#include "MainFrame.h"
 #include "Box.h"
 #include "Circle.h"
-#include "Rect.h"
-#include "FlyingObject.h"
 #define TIMER_ID 6116
 
 BEGIN_EVENT_TABLE (MainWindow, wxWindow)
@@ -51,7 +48,7 @@ void MainWindow::onMouseClick(wxMouseEvent &event) {
 	yy = wxGetMousePosition().y;
 
 	if (isEmptySpace(xx, yy)) {
-		int type = (rand() % 3) + 1;
+		int type = (rand() % 3);
 		if (type == 0) mObject.push_back(new Circle(xx, yy, mColor[rand() % 7], mColor[rand() % 7]));
 		else if (type == 1) mObject.push_back(new Rect(xx, yy, mColor[rand() % 7], mColor[rand() % 7]));
 		else mObject.push_back(new Box(xx, yy, mColor[rand() % 7], mColor[rand() % 7]));
