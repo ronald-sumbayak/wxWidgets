@@ -1,5 +1,3 @@
-#include <cstdlib>
-#include "wx\wx.h"
 #include "MainFrame.h"
 
 class MyApp : public wxApp {

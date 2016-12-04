@@ -1,15 +1,16 @@
 #pragma once
 #include "FlyingObject.h"
-#include "Box.h"
+
 class Circle : public FlyingObject {
 
+    int radius;
+
 public:
-	Circle(int xx, int yy, wxColor fillColor, wxColor outlineColor);
-	void draw(wxPaintDC &pdc);
-	int left();
-	int right();
-	int bottom();
-	int top();
-	int type();
+    Circle (wxPoint, wxColor, wxColor);
+    void draw (wxPaintDC&);
+    virtual int top ();
+    virtual int left ();
+    virtual int right ();
+    virtual int bottom ();
 };
 

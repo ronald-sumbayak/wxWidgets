@@ -1,14 +1,14 @@
 #pragma once
-#include "wx\wx.h"
+#include "MainFrame.h"
 
 class MainWindow : public wxWindow {
     
-    int mImageSize, mImageCount;
-    wxBitmap *mBitmap;
+    int imageSize, imageCount;
+    wxBitmap *bitmap;
     DECLARE_EVENT_TABLE ()
     
 public:
-    MainWindow (wxFrame *parent);
-    void loadImage (wxMouseEvent &event);
-    void onPaint (wxPaintEvent &event);
+    MainWindow (wxFrame*);
+    void loadImage (wxMouseEvent&);
+    void onPaint (wxPaintEvent&);
 };

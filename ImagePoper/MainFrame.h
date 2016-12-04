@@ -4,8 +4,9 @@ class MainWindow;
 
 class MainFrame : public wxFrame {
     
-    MainWindow *mWindow;
-    
+    MainWindow *window;
+
 public:
-    MainFrame (const wxString &title);
+    MainFrame (const wxString&);
+    ~MainFrame ();
 };

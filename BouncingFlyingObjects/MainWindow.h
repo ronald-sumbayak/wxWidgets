@@ -1,27 +1,23 @@
 #pragma once
 #include <vector>
-#include "wx\wx.h"
 #include "MainFrame.h"
-#include "Box.h"
-#include "Rect.h"
-#include "Circle.h"
-#include "FlyingObject.h"
+class FlyingObject;
 
 class MainWindow : public wxWindow {
 
-	int mShapeSize;
-	std::vector<wxColor> mColor;
-	std::vector<FlyingObject*> mObject;
-	wxTimer *mTimer;
+    std::vector<wxColor> colors;
+    std::vector<FlyingObject*> objects;
+    wxTimer *timer;
+    void setupColor ();
+    bool isEmptySpace (wxPoint);
+    wxColor randomColor ();
     DECLARE_EVENT_TABLE ()
 
 public:
-    MainWindow (MainFrame *parent);
-	void setupColor();
-    void onPaint (wxPaintEvent &event);
-	void onTimer(wxTimerEvent &event);
-	void onMouseClick(wxMouseEvent &event);
-	void toggleTimer(wxMouseEvent &event);
-	bool isEmptySpace(int xx, int yy);
-	~MainWindow();
+    MainWindow (MainFrame*);
+    void onPaint (wxPaintEvent&);
+    void onTimer (wxTimerEvent&);
+    void putFlyingObject (wxMouseEvent&);
+    void toggleTimer (wxMouseEvent&);
+    ~MainWindow();
 };

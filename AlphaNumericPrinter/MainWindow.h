@@ -1,16 +1,16 @@
 #pragma once
-#include "wx\wx.h"
 #include "MainFrame.h"
 
 class MainWindow : public wxWindow {
-private:
-    wxBitmap *mBitmap;
-    int mImageSize;
-    bool isAlphaNumeric (int numb);
+
+    wxBitmap *bitmap;
+    int imageSize;
+    bool isAlphaNumeric (int);
     DECLARE_EVENT_TABLE ()
 
 public:
-    MainWindow (MainFrame *parent);
-    void loadImage (wxKeyEvent &event);
-    void onPaint (wxPaintEvent &event);
+    MainWindow (MainFrame*);
+    void loadImage (wxKeyEvent&);
+    void onPaint (wxPaintEvent&);
+	~MainWindow ();
 };

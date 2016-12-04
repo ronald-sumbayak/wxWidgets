@@ -1,36 +1,16 @@
 #include "Circle.h"
-#include "FlyingObject.h"
-#include "Box.h"
-#include <cmath>
 
-Circle::Circle(int xx, int yy, wxColor fillColor, wxColor outlineColor) : FlyingObject(fillColor, outlineColor) {
-	width = height = (rand() % 140) + 10;
-	x = xx;
-	y = yy;
+Circle::Circle (wxPoint mouse, wxColor fillColor, wxColor outlineColor) : FlyingObject (mouse, fillColor, outlineColor) {
+    radius = height = width = width / 2;
 }
 
-void Circle::draw(wxPaintDC &pdc) {
-	pdc.SetBrush(wxBrush(wxColor(mFillColor)));
-	pdc.SetPen(wxPen(wxColor(mOutlineColor), 2, wxPENSTYLE_SOLID));
-	pdc.DrawCircle(x, y, width/2);
+void Circle::draw (wxPaintDC &pdc) {
+    pdc.SetBrush (wxBrush(wxColor(fillColor)));
+    pdc.SetPen (wxPen (wxColor (outlineColor), 2, wxPENSTYLE_SOLID));
+    pdc.DrawCircle (x, y, radius);
 }
 
-int Circle::left() {
-	return x - (width / 2);
-}
-
-int Circle::right() {
-	return x + (width / 2);
-}
-
-int Circle::bottom() {
-	return y - (height / 2);
-}
-
-int Circle::top() {
-	return y + (height / 2);
-}
-
-int Circle::type() {
-	return TYPE_CIRCLE;
-}
+int Circle::top () { return y + radius; }
+int Circle::left () { return x - radius; }
+int Circle::right () { return x + radius; }
+int Circle::bottom () { return y - radius; }

@@ -3,9 +3,10 @@
 class MainWindow;
 
 class MainFrame : public wxFrame {
-private:
-    MainWindow *mWindow;
+    
+    MainWindow *window;
 
 public:
-    MainFrame (const wxString &title);
+    MainFrame (const wxString&);
+    ~MainFrame ();
 };

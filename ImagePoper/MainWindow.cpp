@@ -7,35 +7,30 @@ BEGIN_EVENT_TABLE (MainWindow, wxWindow)
     EVT_PAINT (MainWindow::onPaint)
 END_EVENT_TABLE ()
     
-MainWindow::MainWindow (wxFrame *parent) : wxWindow (parent, wxID_ANY) {
-    SetBackgroundColour (wxColour (*wxWHITE));
-    mImageCount = 10;
-    mImageSize = 100;
-    
-    wxImageHandler *imageLoader = new wxPNGHandler ();
-    wxImage::AddHandler (imageLoader);
+MainWindow::MainWindow (wxFrame *frame) : wxWindow (frame, wxID_ANY) {
+    imageCount = 10;
+    imageSize = 100;
+    wxImage::AddHandler (new wxPNGHandler ());
 }
 
 void MainWindow::loadImage (wxMouseEvent &event) {
-    wxString imageCode = wxString::Format (wxT ("%d"), rand () % mImageCount);
+    wxString imageCode = wxString::Format (wxT ("%d"), rand () % imageCount);
 
     wxStandardPaths &stdPaths = wxStandardPaths::Get ();
     wxString src = stdPaths.GetExecutablePath ();
     src = wxFileName (src).GetPath () + wxT ("\\") + imageCode  + wxT (".png");
 
     wxImage image (src, wxBITMAP_TYPE_PNG);
-    image.Rescale (mImageSize, mImageSize);
-    mBitmap = new wxBitmap (image);
+    image.Rescale (imageSize, imageSize);
+    bitmap = new wxBitmap (image);
     Refresh ();
 }
 
 void MainWindow::onPaint (wxPaintEvent &event) {
+	if (bitmap == nullptr) return;
     wxPaintDC pdc (this);
-
-    if (mBitmap != nullptr) {
-        int xx, yy;
-        xx = wxGetMousePosition ().x - mImageSize;
-        yy = wxGetMousePosition ().y - mImageSize;
-        pdc.DrawBitmap (*mBitmap, wxPoint (xx, yy), true);
-    }
+    int x, y;
+    x = wxGetMousePosition ().x - imageSize;
+    y = wxGetMousePosition ().y - imageSize;
+    pdc.DrawBitmap (*bitmap, wxPoint (x, y), true);
 }
