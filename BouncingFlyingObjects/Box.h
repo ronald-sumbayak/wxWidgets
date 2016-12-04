@@ -6,4 +6,3 @@ class Box : public Rect {
 public:
     Box (wxPoint, wxColor, wxColor);
 };
-

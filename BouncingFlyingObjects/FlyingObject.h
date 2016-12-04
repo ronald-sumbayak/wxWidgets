@@ -18,4 +18,3 @@ public:
     virtual int right () = 0;
     virtual int bottom () = 0;
 };
-

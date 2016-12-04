@@ -30,12 +30,12 @@ void MainWindow::loadImage (wxKeyEvent &event) {
 bool MainWindow::isAlphaNumeric (int numb) {
     if (numb >= '0' && numb <= '9') return true;
     if (numb >= 'a' && numb <= 'z') return true;
-	if (numb >= 'A' && numb <= 'Z') return true;
+    if (numb >= 'A' && numb <= 'Z') return true;
     return false;
 }
 
 void MainWindow::onPaint (wxPaintEvent &event) {
-	if (bitmap == nullptr) return;
+    if (bitmap == nullptr) return;
     wxPaintDC pdc (this);
     int x, y;
     x = random (GetClientSize ().GetWidth () - imageSize);
@@ -44,5 +44,5 @@ void MainWindow::onPaint (wxPaintEvent &event) {
 }
 
 MainWindow::~MainWindow () {
-	delete bitmap;
+    delete bitmap;
 }

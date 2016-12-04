@@ -27,10 +27,14 @@ void MainWindow::loadImage (wxMouseEvent &event) {
 }
 
 void MainWindow::onPaint (wxPaintEvent &event) {
-	if (bitmap == nullptr) return;
+    if (bitmap == nullptr) return;
     wxPaintDC pdc (this);
     int x, y;
     x = wxGetMousePosition ().x - imageSize;
     y = wxGetMousePosition ().y - imageSize;
     pdc.DrawBitmap (*bitmap, wxPoint (x, y), true);
+}
+
+MainWindow::~MainWindow () {
+    delete bitmap;
 }

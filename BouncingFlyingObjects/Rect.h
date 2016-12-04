@@ -11,4 +11,3 @@ public:
     virtual int right ();
     virtual int bottom ();
 };
-

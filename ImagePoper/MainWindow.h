@@ -11,4 +11,5 @@ public:
     MainWindow (wxFrame*);
     void loadImage (wxMouseEvent&);
     void onPaint (wxPaintEvent&);
+    ~MainWindow ();
 };

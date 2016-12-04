@@ -11,7 +11,7 @@ BEGIN_EVENT_TABLE (MainWindow, wxWindow)
     EVT_RIGHT_DOWN (MainWindow::toggleTimer)
 END_EVENT_TABLE ()
 
-MainWindow::MainWindow (MainFrame *parent) : wxWindow (parent, wxID_ANY) {
+MainWindow::MainWindow (MainFrame *frame) : wxWindow (frame, wxID_ANY) {
     setupColor ();
     timer = new wxTimer (this, TIMER_ID);
     timer->Start (TIMER_INTERVAL);
@@ -28,7 +28,7 @@ void MainWindow::setupColor () {
 }
 
 void MainWindow::onTimer (wxTimerEvent &event) {
-	wxPoint window (GetClientSize ().GetWidth (), GetClientSize ().GetHeight ());
+    wxPoint window (GetClientSize ().GetWidth (), GetClientSize ().GetHeight ());
     for (unsigned int x = 0; x < objects.size (); x++) {
         objects[x]->move (window);
         for (unsigned int i = 0; i < objects.size (); i++) if (x != i) objects[x]->collide (objects[i]);
@@ -69,6 +69,5 @@ wxColor MainWindow::randomColor () {
 }
 
 MainWindow::~MainWindow () {
-    timer->Stop ();
     delete timer;
 }
